@@ -12,10 +12,6 @@
 
 短信 SDK for Laravel / Lumen， 基于 [overtrue/easy-sms](https://github.com/overtrue/easy-sms)
 
-```shell
-$ composer require hughcube/laravel-easy-sms -vvv
-```
-
 ## 安装
 
 ```shell
