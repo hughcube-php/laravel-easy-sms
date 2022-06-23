@@ -8,7 +8,6 @@
 
 namespace HughCube\Laravel\EasySms;
 
-use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 use Laravel\Lumen\Application as LumenApplication;
 use Overtrue\EasySms\EasySms as EasySmsSdk;
@@ -20,12 +19,8 @@ class ServiceProvider extends IlluminateServiceProvider
      */
     public function boot()
     {
-        $source = realpath(dirname(__DIR__).'/config/config.php');
-
-        if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
-            $this->publishes([$source => config_path('easySms.php')]);
-        } elseif ($this->app instanceof LumenApplication) {
-            $this->app->configure('easySms');
+        if ($this->app instanceof LumenApplication) {
+            $this->app->configure(EasySms::getFacadeAccessor());
         }
     }
 
@@ -34,8 +29,8 @@ class ServiceProvider extends IlluminateServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('easySms', function ($app) {
-            $config = $app->make('config')->get('easysms', []);
+        $this->app->singleton(EasySms::getFacadeAccessor(), function ($app) {
+            $config = $app->make('config')->get(EasySms::getFacadeAccessor(), []);
             return new EasySmsSdk($config);
         });
     }

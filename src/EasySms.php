@@ -29,7 +29,7 @@ class EasySms extends LazyFacade
     /**
      * @inheritDoc
      */
-    protected static function getFacadeAccessor(): string
+    public static function getFacadeAccessor(): string
     {
         return 'easysms';
     }
