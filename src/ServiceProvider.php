@@ -17,10 +17,7 @@ class ServiceProvider extends \HughCube\Laravel\ServiceSupport\ServiceProvider
         return EasySms::getFacadeAccessor();
     }
 
-    /**
-     * @inheritDoc
-     */
-    protected function createManager($app)
+    protected function createFacadeRoot($app): EasySmsSdk
     {
         $config = $app->make('config')->get($this->getFacadeAccessor(), []);
         return new EasySmsSdk($config);
