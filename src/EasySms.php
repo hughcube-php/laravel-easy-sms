@@ -27,12 +27,18 @@ use HughCube\Laravel\ServiceSupport\LazyFacade;
 class EasySms extends LazyFacade
 {
     /**
-     * Get the registered name of the component.
-     *
-     * @return string
+     * @inheritDoc
      */
     protected static function getFacadeAccessor(): string
     {
         return 'easysms';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected static function registerServiceProvider($app)
+    {
+        $app->register(ServiceProvider::class);
     }
 }
