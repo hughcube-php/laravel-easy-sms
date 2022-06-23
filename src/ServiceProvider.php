@@ -12,14 +12,14 @@ use Overtrue\EasySms\EasySms as EasySmsSdk;
 
 class ServiceProvider extends \HughCube\Laravel\ServiceSupport\ServiceProvider
 {
-    protected function getFacadeAccessor(): string
+    protected function getPackageFacadeAccessor(): string
     {
         return EasySms::getFacadeAccessor();
     }
 
-    protected function createFacadeRoot($app): EasySmsSdk
+    protected function createPackageFacadeRoot($app): EasySmsSdk
     {
-        $config = $app->make('config')->get($this->getFacadeAccessor(), []);
+        $config = $app->make('config')->get($this->getPackageFacadeAccessor(), []);
         return new EasySmsSdk($config);
     }
 }
