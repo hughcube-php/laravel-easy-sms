@@ -14,16 +14,17 @@ return [
             'yunpian',
             'aliyun',
         ],
-
-        'errorLog' => [
-            'file' => '/tmp/easy-sms.log',
-        ],
     ],
     // 可用的网关配置
     'gateways' => [
+        'errorlog' => [
+            'file' => '/tmp/easy-sms.log',
+        ],
+
         'yunpian' => [
             'api_key' => '824f0ff2f71cab52936axxxxxxxxxx',
         ],
+
         'aliyun' => [
             'access_key_id' => '',
             'access_key_secret' => '',

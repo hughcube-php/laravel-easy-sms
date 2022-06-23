@@ -20,7 +20,7 @@ class ServiceProvider extends IlluminateServiceProvider
      */
     public function boot()
     {
-        $source = realpath(dirname(__DIR__) . '/config/config.php');
+        $source = realpath(dirname(__DIR__).'/config/config.php');
 
         if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
             $this->publishes([$source => config_path('easySms.php')]);
@@ -34,12 +34,11 @@ class ServiceProvider extends IlluminateServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(
-            'easySms',
-            function ($app) {
-                $config = $app->make('config')->get('easySms', []);
-                return new EasySmsSdk($config);
-            }
-        );
+        $this->app->singleton('easySms', function ($app) {
+            $config = $app->make('config')->get('easySms', []);
+            $config = $config ?: $app->make('config')->get('easysms', []);
+
+            return new EasySmsSdk($config);
+        });
     }
 }
