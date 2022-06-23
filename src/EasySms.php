@@ -9,7 +9,7 @@
 namespace HughCube\Laravel\EasySms;
 
 use Closure;
-use Illuminate\Support\Facades\Facade as IlluminateFacade;
+use HughCube\Laravel\ServiceSupport\LazyFacade;
 
 /**
  * Class Package.
@@ -24,15 +24,15 @@ use Illuminate\Support\Facades\Facade as IlluminateFacade;
  * @see \Overtrue\EasySms\EasySms
  * @see \HughCube\Laravel\EasySms\ServiceProvider
  */
-class EasySms extends IlluminateFacade
+class EasySms extends LazyFacade
 {
     /**
      * Get the registered name of the component.
      *
      * @return string
      */
-    protected static function getFacadeAccessor()
+    protected static function getFacadeAccessor(): string
     {
-        return 'easySms';
+        return 'easysms';
     }
 }

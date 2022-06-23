@@ -9,24 +9,22 @@
 namespace HughCube\Laravel\EasySms\Tests;
 
 use HughCube\Laravel\EasySms\ServiceProvider as EasySmsServiceProvider;
+use Illuminate\Foundation\Application;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 class TestCase extends OrchestraTestCase
 {
     /**
-     * @param \Illuminate\Foundation\Application $app
+     * @param Application $app
      *
-     * @return array
+     * @return void
      */
     protected function getPackageProviders($app)
     {
-        return [
-            EasySmsServiceProvider::class,
-        ];
     }
 
     /**
-     * @param \Illuminate\Foundation\Application $app
+     * @param Application $app
      */
     protected function getEnvironmentSetUp($app)
     {

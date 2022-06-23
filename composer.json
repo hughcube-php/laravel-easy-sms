@@ -9,9 +9,9 @@
         }
     ],
     "require": {
-        "php": ">=5.6",
-        "illuminate/support": ">=5.0",
-        "overtrue/easy-sms": ">=0.1"
+        "php": ">=7.0",
+        "overtrue/easy-sms": "*",
+        "hughcube/laravel-service-support": "*"
     },
     "require-dev": {
         "laravel/framework": "*",
@@ -30,13 +30,7 @@
             "HughCube\\Laravel\\EasySms\\Tests\\": "tests"
         }
     },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "HughCube\\Laravel\\EasySms\\ServiceProvider"
-            ]
-        }
-    },
+    "extra": {},
     "scripts": {
         "test": "phpunit --verbose --coverage-clover=coverage.clover",
         "phpstan": "phpstan analyse -vvv",

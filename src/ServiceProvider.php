@@ -35,9 +35,7 @@ class ServiceProvider extends IlluminateServiceProvider
     public function register()
     {
         $this->app->singleton('easySms', function ($app) {
-            $config = $app->make('config')->get('easySms', []);
-            $config = $config ?: $app->make('config')->get('easysms', []);
-
+            $config = $app->make('config')->get('easysms', []);
             return new EasySmsSdk($config);
         });
     }
