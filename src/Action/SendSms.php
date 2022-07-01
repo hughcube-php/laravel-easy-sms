@@ -24,20 +24,11 @@ trait SendSms
      */
     protected function send($mobile, $iddCode, $pinCode): void
     {
-        if ($this->skipSendSms()) {
-            return;
-        }
-
         EasySms::send(
             $mobile,
             $this->getSmsMessage($mobile, $iddCode, $pinCode),
             $this->getSmsGateways($mobile, $iddCode, $pinCode)
         );
-    }
-
-    protected function skipSendSms(): bool
-    {
-        return true === EasySms::getConfig()->get('skip_send', false);
     }
 
     /**
