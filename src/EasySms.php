@@ -30,6 +30,8 @@ use Overtrue\EasySms\Exceptions\NoGatewayAvailableException;
  */
 class EasySms extends LazyFacade
 {
+    protected static $skipSendCallable = null;
+
     /**
      * @inheritDoc
      */
@@ -49,12 +51,20 @@ class EasySms extends LazyFacade
     /**
      * 是否发送短信
      */
-    public static function isSkipSend(): bool
+    public static function isSkipSend($to = null): bool
     {
         /** @var \Overtrue\EasySms\EasySms $sender */
         $sender = static::getFacadeRoot();
 
-        return true === $sender->getConfig()->get('skip_send', false);
+        if (true === $sender->getConfig()->get('skip_send', false)) {
+            return true;
+        }
+
+        if (is_callable(static::$skipSendCallable) && true === call_user_func(static::$skipSendCallable, $to)) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -102,6 +112,12 @@ class EasySms extends LazyFacade
             return [];
         }
 
+
         return static::forceSend($to, $message, $gateways);
+    }
+
+    public static function useSkipSendCallable(callable $callable)
+    {
+        static::$skipSendCallable = $callable;
     }
 }
