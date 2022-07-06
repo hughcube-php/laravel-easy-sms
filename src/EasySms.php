@@ -108,7 +108,7 @@ class EasySms extends LazyFacade
      */
     public static function send($to, $message, array $gateways = []): array
     {
-        if (static::isSkipSend()) {
+        if (static::isSkipSend($to)) {
             return [];
         }
 
